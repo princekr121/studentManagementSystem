@@ -6,8 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-
-
 @Controller
 public class StudentController {
     private StudentService studentService ;
@@ -55,6 +53,12 @@ public class StudentController {
 
         return "redirect:/students" ;
 
+    }
+
+    @GetMapping("/students/delete/{id}")
+    public String deleteStudent(@PathVariable Long id ){
+        studentService.deleteStudent( id  );
+        return "redirect:/students" ;
     }
 
 
