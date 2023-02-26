@@ -2,12 +2,9 @@ package com.stduentmanagementsystem.studentmanagementsystem.controller;
 
 import com.stduentmanagementsystem.studentmanagementsystem.entity.Student;
 import com.stduentmanagementsystem.studentmanagementsystem.service.StudentService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.thymeleaf.model.IStandaloneElementTag;
 
 import java.util.List;
 
@@ -38,8 +35,6 @@ public class StudentController {
         //this redirect method calls with get request
         return "redirect:/students" ;
     }
-
-
 
 
 }
