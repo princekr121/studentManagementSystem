@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+
 
 @Controller
 public class StudentController {
@@ -34,6 +34,27 @@ public class StudentController {
         studentService.saveStudent( student ) ;
         //this redirect method calls with get request
         return "redirect:/students" ;
+    }
+
+    @GetMapping("/students/edit/{id}")
+    public String editStudentForm( @PathVariable("id")  Long id , Model model  ){
+        model.addAttribute("student" , studentService.getStudentById( id ) ) ;
+        return "edit_student" ;
+    }
+
+    @PostMapping("/students/{id}")
+    public String updateStudent(@PathVariable("id") Long id , @ModelAttribute("student") Student student , Model model ){
+        // first get student from id
+        Student existingStudent = studentService.getStudentById( id) ;
+        existingStudent.setId( id );
+        existingStudent.setFirstName( student.getFirstName() );
+        existingStudent.setLastName( student.getLastName());
+        existingStudent.setEmail( student.getEmail());
+
+        studentService.updateStudent( existingStudent ) ;
+
+        return "redirect:/students" ;
+
     }
 
 
